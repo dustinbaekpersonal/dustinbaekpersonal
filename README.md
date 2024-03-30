@@ -27,12 +27,12 @@ class AboutMe:
 
     @property
     def workspace(self) -> list[str, str]:
-        """Getter method on workspace attribute."""
+        """Get workspace details."""
         return self._workspace
 
     @workspace.setter
     def workspace(self, value: Iterable[bool, str, str]):
-        """Setter method on workspace attribute to change role and company."""
+        """Update workspace details if conditions met."""
         try:
             career_growth, new_company, new_role = value
         except ValueError as e:
@@ -53,7 +53,7 @@ class AboutMe:
 
     @property
     def programming(self) -> list[str]:
-        """Getter on programming attribute."""
+        """Get current programming skils."""
         return self._programming
 
     @programming.setter
