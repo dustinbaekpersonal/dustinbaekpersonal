@@ -3,31 +3,76 @@
 Briefly,
 ```python
 class AboutMe:
+    """Introduction of Dustin Baek."""
 
     def __init__(self):
-        print('About Me - Dustin Baek')
+        self.__company: str = "Deloitte"
+        self.__position: str = "Machine Learning Engineer"
+        self._workspace: dict[str, str] = {
+            "company": self.__company,
+            "position": self.__position,
+        }
+        self.__interested_positions: set[str] = {
+            "Software Engineer",
+            "Data Engineer",
+            "Machine Learning Engineer",
+            "Python Developer",
+        }
+        self._programming: list[str] = ["Python", "SQL", "Bash"]
+
+    def __repr__(self):
+        """Show who I am."""
+        return f"Hi! I'm Dustin working as {self._workspace.get("position")}" +\
+               f"at {self._workspace.get("company")}."
 
     @property
-    def workspace(self) -> tuple[str, str]:
-        company: str = 'Deloitte'
-        position: str = 'Machine Learning Engineer'
-        return company, position
-    
+    def workspace(self) -> list[str, str]:
+        """Getter method on workspace attribute."""
+        return self._workspace
+
+    @workspace.setter
+    def workspace(self, value: Iterable[bool, str, str]):
+        """Setter method on workspace attribute to change role and company."""
+        try:
+            career_growth, new_company, new_role = value
+        except ValueError as e:
+            raise ValueError(
+                "To set workspace you need to pass in iterable of three elements."
+            ) from e
+        else:
+            if career_growth and new_role in self.__interested_positions:
+                self._workspace["company"] = new_company
+                self._workspace["position"] = new_role
+            elif career_growth and new_role not in self.__interested_positions:
+                raise ValueError(
+                    "I want to become better "
+                    + " or ".join(s for s in self.__interested_positions)
+                )
+            else:
+                raise ValueError("Sorry maybe not position suitable for me.")
+
     @property
     def programming(self) -> list[str]:
-        return [
-            "Python", "SQL", "Bash"
-        ]
+        """Getter on programming attribute."""
+        return self._programming
+
+    @programming.setter
+    def programming(self, language: str):
+        """Willing to learn any language!"""
+        if isinstance(language, str):
+            self._programming.append(language)
 
     @property
     def education(self) -> str:
-        degree: str = 'MEng Information and Computer Engineering'
-        where: str = 'University of Cambridge'
-        when: str = '10.2018 - 06.2022'
-        return ' | '.join([degree, where, when])
-    
+        """No setter since it wouldn't change."""
+        degree: str = "MEng Information and Computer Engineering"
+        where: str = "University of Cambridge"
+        when: str = "10.2018 - 06.2022"
+        return " | ".join([degree, where, when])
+
     @property
     def location(self) -> tuple[float, float]:
+        """I prefer to work in london for now."""
         return 51.493879, -0.218356
 ```
 
