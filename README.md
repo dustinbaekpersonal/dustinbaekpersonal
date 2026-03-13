@@ -6,8 +6,8 @@ class AboutMe:
     """Introduction of Dustin Baek."""
 
     def __init__(self):
-        self.__company: str = "Deloitte"
-        self.__position: str = "Machine Learning Engineer"
+        self.__company: str = "QRT"
+        self.__position: str = "Quantitative Technologist"
         self._workspace: dict[str, str] = {
             "company": self.__company,
             "position": self.__position,
@@ -15,10 +15,9 @@ class AboutMe:
         self.__interested_positions: set[str] = {
             "Software Engineer",
             "Data Engineer",
-            "Machine Learning Engineer",
             "Python Developer",
         }
-        self._programming: list[str] = ["Python", "SQL", "Bash"]
+        self._programming: list[str] = ["Python", "SQL", "Pandas", "Polars", "Rust"]
 
     def __repr__(self):
         """Show who I am."""
